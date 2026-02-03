@@ -1,0 +1,9 @@
+checkpoints/
+interactive_logs/
+eval_logs/
+__pycache__/
+*.mp4
+.git
+.idea
+venv/
+miniconda3/

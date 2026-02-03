@@ -1,24 +1,42 @@
---find-links https://download.pytorch.org/whl/cu116/torch_stable
-numpy>1.2
-hydra-core==1.1.1
-hydra-colorlog
-matplotlib
-opencv-python
-omegaconf
-plotly
-ftfy
-torch==2.2.2
-torchsde
-torchdiffeq
-pytorch-lightning==2.0.8
-gitpython
-scipy
-sentence-transformers
-torchsde
+# Changed dependencies for docker image - Theo
+# Core ML
+torch==2.2.2 --index-url https://download.pytorch.org/whl/cu121
+torchvision==0.17.2 --index-url https://download.pytorch.org/whl/cu121
+transformers==4.42.4
+accelerate
+safetensors
+diffusers
 einops
-moviepy
+
+# Simulation & Math
+numpy==1.26.4
+mujoco==3.3.7
+gym==0.25.2
+robosuite==1.4.0
+pybullet==3.2.7
+opencv-python==4.6.0.66
+imageio
+imageio-ffmpeg
+
+# Config & Utils
+hydra-core==1.1.1
+omegaconf==2.1.2
+wandb==0.13.1
 tqdm
 termcolor
-wandb
-einops_exts
-timm
+h5py
+packaging
+ninja
+pyhash
+
+
+# Add these to the bottom of your requirements.txt
+pip install pytorch-lightning
+pip install bddl
+pip install easydict
+pip install matplotlib
+pip install moviepy imageio imageio-ffmpeg
+pip install "numpy<2"
+pip install einops-exts
+pip install timm
+pip install "transformers==4.42.4" "huggingface-hub>=0.23.0" accelerate

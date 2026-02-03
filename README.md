@@ -6,6 +6,7 @@ This is a Dockerized implementation of FlowerVLA for the Libero env inference.
 
 Original Repository: https://github.com/intuitive-robots/flower_vla_calvin
 
+Currently using the **FLOWER VLA libero_90** model: https://huggingface.co/mbreuss/flower_libero_90
 
 ## Prerequisites
 

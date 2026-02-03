@@ -2,7 +2,7 @@
 dataset
 /outputs/
 /checkpoints/
-/inference_logs/
+/interactive_logs/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

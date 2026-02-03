@@ -1,66 +1,65 @@
-# Using FlowerVLA on Libero with Docker
+# FlowerVLA on Libero (Docker)
 
-Refer the original page for more info.
+This is a Dockerized implementation of FlowerVLA for the Libero env inference.
 
-https://github.com/intuitive-robots/flower_vla_calvin
+![alt text](sample.gif)
+
+Original Repository: https://github.com/intuitive-robots/flower_vla_calvin
 
 
 ## Prerequisites
 
-- Linux OS (Ubuntu 22.04 recommended)
+- **OS:** Linux (Ubuntu 20.04/22.04 recommended)
+- **Storage:** At least **44GB** of free disk space
+- **GPU:** NVIDIA GPU (>8GB VRAM recommended) with drivers installed
+- **Software:** Docker & [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) installed.
 
-- 30GB of space
+## Installisation and usage
 
-- NVIDIA GPU (>3GB VRAM) with drivers installed
-
-- Docker & NVIDIA Container Toolkit installed.
-
-## Usage
+You don't need to clone the code (it's all inside the Docker image), but you need a directory for the output videos.
 
 ```
 git clone https://github.com/Bigenlight/Flower_VLA_for_libero_in_Docker.git
 
-# 1. Create a workspace folder
-mkdir -p checkpoints/flower_libero_90
+cd Flower_VLA_for_libero_in_Docker
+
 mkdir -p interactive_logs
-
-# 2. Go into the folder
-cd flower_vla_workspace
 ```
 
-- Pull image
+- Pull image (download may take time)
 
 ```
-docker pull bigenlight/flower_vla:v5
+docker pull bigenlight/flower_vla:v6
 ```
 
-- Run image
+- Start the Robot Server
 
 ```
 docker run -itd \
   --name flower_vla \
-  --device nvidia.com/gpu=0 \
-  -v $(pwd)/checkpoints:/app/checkpoints \
+  --gpus all \
   -v $(pwd)/interactive_logs:/app/interactive_logs \
-  bigenlight/flower_vla:v5 \
+  bigenlight/flower_vla:v6 \
   /bin/bash
 ```
 
-- Enter the container.
+- Enter the container
 
 ```
 docker exec -it flower_vla /bin/bash
 ```
 
-- Inside container, run the code for launching Liberp inference.
+- Inside container, run the code for launching Libero inference
 
 ```
-python run_robot.py --scene_id 89 # choose scene id from 0 to 89
+python run_robot.py --scene_id 89 # You can choose any scene_id from 0 to 89
 ```
+
+> Note: The robot runs in Silent Mode (no GUI window) when inside a container. Once the task is finished, check the interactive_logs/ folder on your host machine to watch the generated .mp4 video.
 
 ## Citation (from original page)
 
-If you found the code usefull, please cite our work: (arxiv coming very soon)
+If you found the code usefull, please cite our work:
 
 ```bibtex
 @inproceedings{

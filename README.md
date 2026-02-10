@@ -32,7 +32,7 @@ mkdir -p interactive_logs
 - Pull image (download may take time)
 
 ```
-docker pull bigenlight/flower_vla:v7
+docker pull bigenlight/flower_vla:v9
 ```
 
 - Start the Robot Server
@@ -43,7 +43,7 @@ docker run -itd \
   --gpus all \
   -p 5000:5000 \
   -v $(pwd)/interactive_logs:/app/interactive_logs \
-  bigenlight/flower_vla:v7 \
+  bigenlight/flower_vla:v9 \
   /bin/bash
 ```
 
